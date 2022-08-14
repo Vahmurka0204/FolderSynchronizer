@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderSynchronizer", "FolderSynchronizer\FolderSynchronizer.csproj", "{5B765BF7-51F8-4E53-BA20-D197DD79FC64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderSynchronizer", "FolderSynchronizer\FolderSynchronizer.csproj", "{B38AEA5F-C4C8-4CAC-9BB0-6C5AC446C973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{33F58B26-6DC9-4C44-9671-CC63F4C1167E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderSynchronizerLib", "FolderSynchronizerLib\FolderSynchronizerLib.csproj", "{56DE862D-4724-457D-A113-350B9D397619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderSynchronizerLib", "FolderSynchronizerLib\FolderSynchronizerLib.csproj", "{D436EE73-71B7-4E66-B43E-CBFC8F127AEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6FAE604E-0628-4E0E-9A5C-8391F39DD9BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5B765BF7-51F8-4E53-BA20-D197DD79FC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B765BF7-51F8-4E53-BA20-D197DD79FC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B765BF7-51F8-4E53-BA20-D197DD79FC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B765BF7-51F8-4E53-BA20-D197DD79FC64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33F58B26-6DC9-4C44-9671-CC63F4C1167E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33F58B26-6DC9-4C44-9671-CC63F4C1167E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33F58B26-6DC9-4C44-9671-CC63F4C1167E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33F58B26-6DC9-4C44-9671-CC63F4C1167E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D436EE73-71B7-4E66-B43E-CBFC8F127AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D436EE73-71B7-4E66-B43E-CBFC8F127AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D436EE73-71B7-4E66-B43E-CBFC8F127AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D436EE73-71B7-4E66-B43E-CBFC8F127AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B38AEA5F-C4C8-4CAC-9BB0-6C5AC446C973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38AEA5F-C4C8-4CAC-9BB0-6C5AC446C973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38AEA5F-C4C8-4CAC-9BB0-6C5AC446C973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B38AEA5F-C4C8-4CAC-9BB0-6C5AC446C973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56DE862D-4724-457D-A113-350B9D397619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56DE862D-4724-457D-A113-350B9D397619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56DE862D-4724-457D-A113-350B9D397619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56DE862D-4724-457D-A113-350B9D397619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAE604E-0628-4E0E-9A5C-8391F39DD9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAE604E-0628-4E0E-9A5C-8391F39DD9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAE604E-0628-4E0E-9A5C-8391F39DD9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAE604E-0628-4E0E-9A5C-8391F39DD9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {333CB58A-6941-4439-B165-B87FFB42F46C}
+		SolutionGuid = {F8C59118-89DE-4166-A4B9-8C33E3367522}
 	EndGlobalSection
 EndGlobal

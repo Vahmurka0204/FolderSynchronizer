@@ -29,7 +29,7 @@ namespace FolderSynchronizerLib
 
             int count = 0;
 
-            while (_pathChecker.IsValid(args[count]))
+            while (count< 2 && _pathChecker.IsValid(args[count]))
             {
                 input.FoldersPaths.Add(args[count]);
                 count++;
@@ -96,11 +96,14 @@ namespace FolderSynchronizerLib
 
             int count = 0;
 
-            while (_pathChecker.IsValid(args[count]))
+            while (count< 2 && _pathChecker.IsValid(args[count]))
             {
                 count++;
             }
-
+            if (count != 2)
+            {
+                throw new SyncException("Invalid path");
+            }
             while (count < args.Length)
             {
                 string word = args[count];

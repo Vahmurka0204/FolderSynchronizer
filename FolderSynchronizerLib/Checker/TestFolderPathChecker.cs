@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text.RegularExpressions;
 
 namespace FolderSynchronizerLib
 {
@@ -6,17 +7,9 @@ namespace FolderSynchronizerLib
     {
         public bool IsValid(string path)
         {
-            var invalidChars = Path.GetInvalidPathChars();
-
-            foreach(char c in invalidChars)
-            {
-                if (path.Contains(c.ToString()))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            Regex r = new Regex(@"^(([a-zA-Z]\:)|(\\))(\\{1}|((\\{1})[^\\]([^/:*?<>""|]*))+)$");
+            return r.IsMatch(path);
+           
         }
     }
 }

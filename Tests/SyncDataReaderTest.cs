@@ -8,8 +8,9 @@ namespace Tests
     public class SyncDataReaderTest
     {
 
-        [Theory]
+        [Theory (Skip = "specific reason")]
         [ClassData(typeof(FolderSetSyncData))]
+        
         public void CreateInputValidArgs(FolderSet set, SyncData expected)
         {
             var syncData = new SyncDataReader().Load(set);
