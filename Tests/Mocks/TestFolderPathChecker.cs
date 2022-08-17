@@ -1,7 +1,7 @@
-﻿using System.IO;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using FolderSynchronizerLib;
 
-namespace FolderSynchronizerLib
+namespace Tests
 {
     public class TestFolderPathChecker : IChecker
     {
