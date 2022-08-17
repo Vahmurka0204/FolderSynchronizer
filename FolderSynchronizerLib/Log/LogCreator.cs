@@ -6,11 +6,11 @@
         {
             switch (loglevel)
             {
-                case LogLevels.summary:
+                case LogLevels.Summary:
                     return new SummaryLog();
-                case LogLevels.silent:
+                case LogLevels.Silent:
                     return new SilentLog();
-                case LogLevels.verbose:
+                case LogLevels.Verbose:
                     return new VerboseLog();
                 default:
                     break;

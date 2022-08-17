@@ -12,7 +12,7 @@ namespace FolderSynchronizerLib
         {
             FoldersPaths = new List<string>();
             NoDeleteFlag = false;
-            LogLevel = LogLevels.summary;
+            LogLevel = LogLevels.Summary;
         }
     }
 }

@@ -1,4 +1,8 @@
 ﻿namespace FolderSynchronizerLib
 {
-    public enum LogLevels { summary, silent, verbose }
+    public enum LogLevels { 
+        Summary,
+        Silent,
+        Verbose 
+    }
 }
