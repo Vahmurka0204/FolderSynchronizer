@@ -6,11 +6,11 @@ namespace Tests
     public class InputDataReaderTests
     {
         [Theory]
-        [InlineData("C:\\", "D:\\", "--no-delete", "-loglevel", "silent")]
+        [InlineData("C:\\", "D:\\", "--no-delete", "--loglevel", "silent")]
         [InlineData("C:\\", "D:\\", "--no-delete")]
-        [InlineData("C:\\", "D:\\", "-loglevel", "silent", "--no-delete")]
+        [InlineData("C:\\", "D:\\", "--loglevel", "silent", "--no-delete")]
         [InlineData("C:\\", "D:\\")]
-        [InlineData("C:\\", "D:\\","-loglevel", "verbose")]
+        [InlineData("C:\\", "D:\\","--loglevel", "verbose")]
         public void CreateInputValidArgs(params string[] args)
         {
             var input = new InputDataReader(new TestFolderPathChecker()).Read(args);

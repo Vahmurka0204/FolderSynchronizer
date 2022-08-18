@@ -9,7 +9,7 @@
         public InputDataReader(IChecker checker)
         {
             _noDelete = "--no-delete";
-            _loglevel = "-loglevel";
+            _loglevel = "--loglevel";
             _pathChecker = checker;
         }
 
