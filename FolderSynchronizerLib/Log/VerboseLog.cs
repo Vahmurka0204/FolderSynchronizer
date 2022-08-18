@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Text;
 
 namespace FolderSynchronizerLib
 {
@@ -13,27 +10,24 @@ namespace FolderSynchronizerLib
 
         public string FormLogToPrint()
         {
-            string log = "";
+            StringBuilder stringBuilder = new StringBuilder();
 
-            foreach(var pair in _addInfoList)
+            foreach (var pair in _addInfoList)
             {
-                log.Concat("File " + pair.Item1 + " has been copied to " + Path.GetDirectoryName(pair.Item2));
-                log.Concat(Environment.NewLine);
+                stringBuilder.AppendLine($"File {pair.Item1} has been copied to {Path.GetDirectoryName(pair.Item2)}");
             }
 
             foreach (var pair in _updateInfoList)
             {
-                log.Concat("File " + pair.Item2 + " has been updated to " + pair.Item1);
-                log.Concat(Environment.NewLine);
+                stringBuilder.AppendLine($"File {pair.Item2} has been updated to {pair.Item1}");
             }
 
             foreach (var file in _deleteInfoList)
             {
-                log.Concat("File " + file + " has been deleted");
-                log.Concat(Environment.NewLine);
+                stringBuilder.AppendLine($"File {file} has been deleted");
             }
 
-            return log;
+            return stringBuilder.ToString();
         }
 
         public void GetInfoAboutAddFiles(string sourcePath, string destinationPath)

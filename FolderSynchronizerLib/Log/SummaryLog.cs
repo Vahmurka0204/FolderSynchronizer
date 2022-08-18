@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace FolderSynchronizerLib
 {
@@ -14,15 +10,13 @@ namespace FolderSynchronizerLib
 
         public string FormLogToPrint()
         {
-            string log = "";
+            StringBuilder stringBuilder = new StringBuilder();
 
-            log.Concat(_countOfAdd + " files have been added");
-            log.Concat(Environment.NewLine);
-            log.Concat(_countOfUpdate + " files have been updated");
-            log.Concat(Environment.NewLine);
-            log.Concat(_countOfDelete + " files have been deleted");
+            stringBuilder.AppendLine($"{_countOfAdd} files have been added");
+            stringBuilder.AppendLine($"{_countOfUpdate} files have been updated");
+            stringBuilder.Append($"{_countOfDelete} files have been deleted");
 
-            return log;
+            return stringBuilder.ToString();
         }
 
         public void GetInfoAboutAddFiles(string sourcePath, string destinationPath)
