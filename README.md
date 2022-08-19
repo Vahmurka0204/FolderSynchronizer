@@ -1,10 +1,10 @@
 # FolderSynchronizer
 
-Данное консольное приложение синхронизирует несколько папок, порядок указания папок задает приоритет ( от высокого к низкому).
+This console application synchronizes several folders, the order of specifying folders sets the priority (from high to low).
 
-Флаг --no-delete синхронизирует папки без удаления файлов. 
+Using the --no-delete flag, you can synchronize folders without deleting files.
 
-Флаг -loglevel задает уровень логирования 
-* summary - формирует сообщение об общем количестве удаленных, обновленных и добавленных файлов 
-* verbose - формирует сообщение типа <имя_файла> <действие_с_файлом> из <папка_1> в <папка_2> 
-* silent - формирует сообщение о завершении синхронизации
+The --loglevel flag sets the logging level
+* summary - generates a message about the total number of deleted, updated and added files
+* verbose - generates a message of the type <file_name> <action_file> from <folder_1> to <folder_2>
+* silent - generates a message about the completion of synchronization
