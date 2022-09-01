@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization.Json;
+using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace FolderSynchronizerLib
@@ -46,8 +47,7 @@ namespace FolderSynchronizerLib
 
             foreach(string filePath in filesPathList)
             {
-                FileInfo file = new FileInfo(filePath);
-                filesList.Add(new FileDescriptor(GetSubPath(filePath,path), file.GetHashCode()));
+                filesList.Add(new FileDescriptor(GetSubPath(filePath,path), CalculateMD5(filePath)));
             }
 
             var folder = new Folder(path);
@@ -80,6 +80,18 @@ namespace FolderSynchronizerLib
             string filename = path.Replace("\\", ".");
             filename = filename.Replace(":", "") + ".json";
             return filename;
+        }
+
+        public static string CalculateMD5(string fileName)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(fileName))
+                {
+                    var hash = md5.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                }
+            }
         }
     }
 }

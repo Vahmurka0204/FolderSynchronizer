@@ -8,9 +8,9 @@ namespace FolderSynchronizerLib
         public string Path;
 
         [JsonInclude]
-        public int Hash;
+        public string Hash;
 
-        public FileDescriptor(string filePath, int hash)
+        public FileDescriptor(string filePath, string hash)
         {
             Path = filePath;
             Hash = hash;
