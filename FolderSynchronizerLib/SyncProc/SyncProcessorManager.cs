@@ -9,8 +9,8 @@ namespace FolderSynchronizerLib
         {
            foreach(var copyInfo in filesToCopy)
             {
-                string source = Path.Combine(copyInfo.Value, copyInfo.Key);
-                string destination = Path.Combine(path, copyInfo.Key);
+                string source = copyInfo.Value+copyInfo.Key;
+                string destination = path+ copyInfo.Key;
 
                 File.Copy(source, destination,true);
                 log.GetInfoAboutAddFiles(source, destination);

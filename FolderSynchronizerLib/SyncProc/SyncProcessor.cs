@@ -15,7 +15,15 @@ namespace FolderSynchronizerLib
         {
             foreach (var path in folderPaths)
             {
-                _syncProcManager.Copy(syncData.FilesToCopy, path, log);
+                var filesToCopy = new Dictionary<string, string>();
+                foreach (var f in syncData.FilesToCopy)
+                {
+                    if (!f.Value.Contains(path))
+                    {
+                        filesToCopy.Add(f.Key, f.Value);
+                    }
+                }
+                _syncProcManager.Copy(filesToCopy, path, log);
             }
 
             foreach (var path in folderPaths)
