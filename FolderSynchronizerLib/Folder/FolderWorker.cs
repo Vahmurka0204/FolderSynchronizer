@@ -1,10 +1,11 @@
 ﻿using System.Runtime.Serialization.Json;
+using System.Text.Json;
 
 namespace FolderSynchronizerLib
 {
     public class FolderWorker
     {
-        public Folder LoadSerializedFolder(string path)
+        public Folder LoadSerializedFolderAsync(string path)
         {
             string filename = GetFileName(path);
 
@@ -13,13 +14,13 @@ namespace FolderSynchronizerLib
                 return new Folder(path);
             }
 
-            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Folder));
 
-            using (FileStream fileStream = new FileStream(filename, FileMode.Open))
-            {
-               Folder folder = (Folder)jsonFormatter.ReadObject(fileStream);
-               return folder;                                
-            }
+            string jsonFolder = File.ReadAllText(filename);
+            
+            Folder folder = JsonSerializer.Deserialize<Folder>(jsonFolder);
+
+            return folder;                                
+            
         }
 
         public Folder LoadFolder(string path)
@@ -63,7 +64,7 @@ namespace FolderSynchronizerLib
         public void SerializeFolder(string path)
         {
             Folder folder = LoadFolder(path);
-            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Folder));
+            var jsonFolder = JsonSerializer.Serialize(folder);
             string filename = GetFileName(path);
 
             if (File.Exists(filename))
@@ -71,10 +72,7 @@ namespace FolderSynchronizerLib
                 File.Delete(filename);
             }
 
-            using (FileStream fileStream = new FileStream(filename, FileMode.Create))
-            {
-                jsonFormatter.WriteObject(fileStream, folder);
-            }            
+            File.WriteAllText(filename, jsonFolder);
         }
 
         private static string GetFileName(string path)

@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace FolderSynchronizerLib
 {
-    [DataContract]
-    public class Folder
+     public class Folder
     {
-        [DataMember]
+        [JsonInclude]
         public string Path;
-        
-        [DataMember]
+
+        [JsonInclude]
         public List<FileDescriptor> FilesList;
        
         public Folder(string address)
