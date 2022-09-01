@@ -27,6 +27,8 @@ namespace FolderSynchronizerLib
                 stringBuilder.AppendLine($"File {file} has been deleted");
             }
 
+            stringBuilder.Append("Folders are synchronized.");
+
             return stringBuilder.ToString();
         }
 

@@ -17,7 +17,7 @@ namespace Tests
             for (int i = 0; i < 7; i++)
                 log.GetInfoAboutDeleteFiles("");
 
-            Assert.Equal("5 files have been added\r\n3 files have been updated\r\n7 files have been deleted", log.FormLogToPrint());
+            Assert.Equal("5 files have been added.\r\n3 files have been updated.\r\n7 files have been deleted.\r\nFolders are synchronized.", log.FormLogToPrint());
         }
     }
 }

@@ -9,6 +9,7 @@
             var syncData = new SyncDataReader().Load(folderSet);
             var log = new LogCreator().Create(folderSet.Loglevel);
             new SyncProcessor().Synchronize(syncData, input.FoldersPaths, log);
+            Console.WriteLine(log.FormLogToPrint());
 
             foreach(var path in input.FoldersPaths)
             {

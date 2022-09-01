@@ -12,9 +12,10 @@ namespace FolderSynchronizerLib
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine($"{_countOfAdd} files have been added");
-            stringBuilder.AppendLine($"{_countOfUpdate} files have been updated");
-            stringBuilder.Append($"{_countOfDelete} files have been deleted");
+            stringBuilder.AppendLine($"{_countOfAdd} files have been added.");
+            stringBuilder.AppendLine($"{_countOfUpdate} files have been updated.");
+            stringBuilder.AppendLine($"{_countOfDelete} files have been deleted.");
+            stringBuilder.Append("Folders are synchronized.");
 
             return stringBuilder.ToString();
         }
