@@ -1,5 +1,4 @@
 ﻿// TODO : RemoveCollision
-using System;
 
 namespace FolderSynchronizerLib
 {

@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization.Json;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace FolderSynchronizerLib

@@ -28,7 +28,7 @@ namespace FolderSynchronizerLib
 
             foreach (var path in folderPaths)
             {
-                _syncProcManager.Update(syncData.FilesToCopy, path, log);
+                _syncProcManager.Update(syncData.FilesToUpdate, path, log);
             }
 
             foreach (var path in folderPaths)

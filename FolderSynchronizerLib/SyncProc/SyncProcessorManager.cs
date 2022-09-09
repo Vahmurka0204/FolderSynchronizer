@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
+﻿
 namespace FolderSynchronizerLib
 {
     public class SyncProcessorManager : ISyncProcessorManager
@@ -9,8 +7,8 @@ namespace FolderSynchronizerLib
         {
            foreach(var copyInfo in filesToCopy)
             {
-                string source = copyInfo.Value+copyInfo.Key;
-                string destination = path+ copyInfo.Key;
+                string source = copyInfo.Value + copyInfo.Key;
+                string destination = path + copyInfo.Key;
 
                 File.Copy(source, destination,true);
                 log.GetInfoAboutAddFiles(source, destination);
@@ -37,16 +35,16 @@ namespace FolderSynchronizerLib
         {
             foreach (var copyInfo in filesToUpdate)
             {
-                string pathUpdate = Path.Combine(path, copyInfo.Key);
-                string source = Path.Combine(copyInfo.Value, copyInfo.Key);
+                string source = copyInfo.Value+copyInfo.Key;
+                string destination = path + copyInfo.Key;
 
-                if (!File.Exists(pathUpdate))
+                if (!File.Exists(destination) || source==destination)
                 {
                     continue;
                 }
 
-                File.Copy(source, pathUpdate, true);
-                log.GetInfoAboutUpdateFiles(source, pathUpdate);
+                File.Copy(source, destination, true);
+                log.GetInfoAboutUpdateFiles(source, destination);
             }
         }
     }
