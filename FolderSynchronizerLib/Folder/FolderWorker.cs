@@ -46,7 +46,7 @@ namespace FolderSynchronizerLib
 
             foreach(string filePath in filesPathList)
             {
-                filesList.Add(new FileDescriptor(GetSubPath(filePath,path), CalculateMD5(filePath)));
+                filesList.Add(new FileDescriptor(GetSubPath(filePath,path), path, CalculateMD5(filePath)));
             }
 
             var folder = new Folder(path);

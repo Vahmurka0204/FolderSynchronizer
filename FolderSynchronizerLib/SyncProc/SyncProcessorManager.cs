@@ -3,23 +3,23 @@ namespace FolderSynchronizerLib
 {
     public class SyncProcessorManager : ISyncProcessorManager
     {
-        public void Copy(Dictionary<string, string> filesToCopy, string path, ILog log)
+        public void Copy(List<FileDescriptor> filesToCopy, string destinationFolder, ILog log)
         {
            foreach(var copyInfo in filesToCopy)
             {
-                string source = copyInfo.Value + copyInfo.Key;
-                string destination = path + copyInfo.Key;
+                string source = copyInfo.FolderPath + copyInfo.FileName;
+                string destination = destinationFolder + copyInfo.FileName;
 
                 File.Copy(source, destination,true);
                 log.GetInfoAboutAddFiles(source, destination);
             }
         }
 
-        public void Delete(Dictionary<string, string> filesToDelete, string path, ILog log)
+        public void Delete(List<FileDescriptor> filesToDelete, string destinationFolder, ILog log)
         {
             foreach (var deleteInfo in filesToDelete)
             {
-                string pathDelete = Path.Combine(path, deleteInfo.Key);
+                string pathDelete = Path.Combine(destinationFolder, deleteInfo.FileName);
 
                 if (!File.Exists(pathDelete))
                 {
@@ -31,12 +31,12 @@ namespace FolderSynchronizerLib
             }
         }
 
-        public void Update(Dictionary<string, string> filesToUpdate, string path, ILog log)
+        public void Update(List<FileDescriptor> filesToUpdate, string destinationFolder, ILog log)
         {
             foreach (var copyInfo in filesToUpdate)
             {
-                string source = copyInfo.Value+copyInfo.Key;
-                string destination = path + copyInfo.Key;
+                string source = copyInfo.FolderPath+copyInfo.FileName;
+                string destination = destinationFolder + copyInfo.FileName;
 
                 if (!File.Exists(destination) || source==destination)
                 {

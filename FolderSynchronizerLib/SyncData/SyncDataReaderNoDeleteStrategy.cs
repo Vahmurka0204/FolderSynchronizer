@@ -4,73 +4,73 @@ namespace FolderSynchronizerLib
 {
     public class SyncDataReaderNoDeleteStrategy : ISyncDataReaderStrategy
     {
-        private Dictionary<string, string> _addDictionary = new Dictionary<string, string>();
-        private Dictionary<string, string> _updateDictionary = new Dictionary<string, string>();
-        private Dictionary<string, string> _deleteDictionary = new Dictionary<string, string>();
+        private List<FileDescriptor> _filesForAddList = new List<FileDescriptor>();
+        private List<FileDescriptor> _filesForUpdateList = new List<FileDescriptor>();
+        private List<FileDescriptor> _filesForDeleteList = new List<FileDescriptor>();
 
         public SyncData MakeSyncData(FolderSet folderSet)
         {
            foreach (var folderPair in folderSet.FolderList)
             {
-               _addDictionary = FindNewFiles(folderPair, _addDictionary);
-               _updateDictionary = FindUpdateFiles(folderPair, _updateDictionary);
-               _deleteDictionary = FindDeleteFiles(folderPair, _deleteDictionary);
+                _filesForAddList = FindNewFiles(folderPair, _filesForAddList);
+                _filesForDeleteList = FindDeleteFiles(folderPair, _filesForDeleteList);
+                _filesForUpdateList = FindUpdateFiles(folderPair, _filesForUpdateList);
             }
 
-            var syncData = new SyncData(_addDictionary, _updateDictionary, new Dictionary<string, string>());
+            var syncData = new SyncData(_filesForAddList, _filesForUpdateList, new List<FileDescriptor>());
 
             return syncData;
         }
 
-        private Dictionary<string,string> FindDeleteFiles(FolderPair folderPair, Dictionary<string,string> deleteDictionary)
+        private List<FileDescriptor> FindDeleteFiles(FolderPair folderPair, List<FileDescriptor> deleteList)
         {
             var newFolder = folderPair.New;
             var oldFolder = folderPair.Old;
 
             foreach (var oldFile in oldFolder.FilesList)
             {
-                var newFile = GetItemByPath(newFolder, oldFile.Path);
+                var newFile = GetItemByPath(newFolder, oldFile.FileName);
 
-                if (newFile == null && !deleteDictionary.ContainsKey(oldFile.Path))
+                if (newFile == null && !deleteList.Any(item => item.FileName==oldFile.FileName))
                 {
-                    if (_updateDictionary.ContainsKey(oldFile.Path))
+                    if (_filesForUpdateList.Any(item => item.FileName == oldFile.FileName))
                     {
                         continue;
                     }
 
-                    deleteDictionary.Add(oldFile.Path, oldFolder.Path);
+                    deleteList.Add(new FileDescriptor( oldFile.FileName, oldFolder.Path, oldFile.Hash));
                 }
             }
 
-            return deleteDictionary;
+            return deleteList;
         }
 
-        private Dictionary<string, string> FindNewFiles(FolderPair folderPair, Dictionary<string, string> addDictionary)
+        private List<FileDescriptor> FindNewFiles(FolderPair folderPair, List<FileDescriptor> addList)
         {
             var newFolder = folderPair.New;
             var oldFolder = folderPair.Old;
 
             foreach (var newFile in newFolder.FilesList)
             {
-                var oldFile = GetItemByPath(oldFolder, newFile.Path);
+                var oldFile = GetItemByPath(oldFolder, newFile.FileName);
 
-                if (oldFile == null && !addDictionary.ContainsKey(newFile.Path))
+                if (oldFile == null && !addList.Any(item => item.FileName==newFile.FileName))
                 {
-                    addDictionary.Add(newFile.Path, newFolder.Path);
+                    addList.Add(new FileDescriptor(newFile.FileName, newFolder.Path, newFile.Hash));
                 }
             }
 
-            return addDictionary;
+            return addList;
         }
 
-        private Dictionary<string, string> FindUpdateFiles(FolderPair folderPair, Dictionary<string, string> updateDictionary)
+        private List<FileDescriptor> FindUpdateFiles(FolderPair folderPair, List<FileDescriptor> updateList)
         {
             var newFolder = folderPair.New;
             var oldFolder = folderPair.Old;
 
             foreach (var newFile in newFolder.FilesList)
             {
-                var oldFile = GetItemByPath(oldFolder, newFile.Path);
+                var oldFile = GetItemByPath(oldFolder, newFile.FileName);
 
                 if (oldFile == null)
                 {
@@ -79,20 +79,20 @@ namespace FolderSynchronizerLib
 
                 bool haveDifferentContent = (newFile.Hash != oldFile.Hash);
 
-                if (haveDifferentContent && !updateDictionary.ContainsKey(newFile.Path) && !_deleteDictionary.ContainsKey(newFile.Path))
+                if (haveDifferentContent && !updateList.Any(item => item.FileName == newFile.FileName) && !_filesForDeleteList.Any(item => item.FileName == newFile.FileName))
                 {
-                    updateDictionary.Add(newFile.Path, newFolder.Path);
+                    updateList.Add(new FileDescriptor(newFile.FileName, newFolder.Path, newFile.Hash));
                 }
             }
 
-            return updateDictionary;
+            return updateList;
         }
 
         private static FileDescriptor GetItemByPath(Folder folder, string path)
         {
             foreach (FileDescriptor file in folder.FilesList)
             {
-                if (file.Path == path)
+                if (file.FileName == path)
                 {
                     return file;
                 }

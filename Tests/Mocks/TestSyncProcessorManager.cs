@@ -14,7 +14,7 @@ namespace Tests
             _folders = folders;   
         }
         
-        public void Copy(Dictionary<string, string> filesToCopy, string path, ILog log)
+        public void Copy(List<FileDescriptor> filesToCopy, string path, ILog log)
         {
            
         }
@@ -23,7 +23,7 @@ namespace Tests
         {
             foreach (FileDescriptor file in files)
             {
-                if (file.Path == path)
+                if (file.FileName == path)
                 {
                     return file;
                 }
@@ -31,12 +31,12 @@ namespace Tests
             return null;
         }
 
-        public void Delete(Dictionary<string,string> filesToDelete, string path, ILog log)
+        public void Delete(List<FileDescriptor> filesToDelete, string path, ILog log)
         {
             
         }
 
-        public void Update(Dictionary<string, string> fileToUpdate, string path, ILog log)
+        public void Update(List<FileDescriptor> fileToUpdate, string path, ILog log)
         {
         }
     }

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FolderSynchronizerLib
+﻿namespace FolderSynchronizerLib
 {
     public class SyncData : IEquatable<SyncData>
     {
-        public readonly Dictionary<string, string> FilesToCopy;
-        public readonly Dictionary<string, string> FilesToUpdate;
-        public readonly Dictionary<string, string> FilesToDelete;       
+        public readonly List<FileDescriptor> FilesToCopy;
+        public readonly List<FileDescriptor> FilesToUpdate;
+        public readonly List<FileDescriptor> FilesToDelete;
 
         public SyncData
-           (Dictionary<string,string> filesToCopy,
-            Dictionary<string,string> filesToUpdate,
-            Dictionary<string, string> filesToDelete)
+           (List<FileDescriptor> filesToCopy,
+            List<FileDescriptor> filesToUpdate,
+            List<FileDescriptor> filesToDelete)
         {
             FilesToCopy = filesToCopy;
             FilesToUpdate = filesToUpdate;
@@ -21,21 +18,22 @@ namespace FolderSynchronizerLib
 
         public bool Equals(SyncData other)
         {
-            bool filesToCopy = CompareDictionary(other.FilesToCopy, FilesToCopy);
-            bool filesToUpdate = CompareDictionary(other.FilesToUpdate, FilesToUpdate);
-            bool filesToDelete = CompareDictionary(other.FilesToDelete, FilesToDelete);
+            bool filesToCopy = CompareLists(other.FilesToCopy, FilesToCopy);
+            bool filesToUpdate = CompareLists(other.FilesToUpdate, FilesToUpdate);
+            bool filesToDelete = CompareLists(other.FilesToDelete, FilesToDelete);
             return filesToCopy && filesToUpdate && filesToDelete;
         }
 
-        private bool CompareDictionary(Dictionary<string, string> aDictionary, Dictionary<string,string> bDictionary)
+        private bool CompareLists(List<FileDescriptor> aList, List<FileDescriptor> bList)
         {
-            foreach (KeyValuePair<string, string> pair in aDictionary)
+            foreach (FileDescriptor item in aList)
             {
-                if (!bDictionary.ContainsKey(pair.Key))
+                var bFile = bList.Find(file => file.FileName == item.FileName);
+                if (!bList.Any(file => file.FileName==item.FileName))
                 {
                     return false;
                 }
-                if (bDictionary[pair.Key] != pair.Value)
+                if (bFile.FolderPath != item.FolderPath)
                 {
                     return false;
                 }

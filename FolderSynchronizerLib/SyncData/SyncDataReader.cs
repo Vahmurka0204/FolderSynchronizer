@@ -11,11 +11,11 @@ namespace FolderSynchronizerLib
         {
             if (folderSet.NoDeleteFlag)
             {
-                SyncReaderStrategy = new SyncDataReaderDeleteStrategy();
+                SyncReaderStrategy = new SyncDataReaderNoDeleteStrategy();
             }
             else
             {
-                SyncReaderStrategy = new SyncDataReaderNoDeleteStrategy();
+                SyncReaderStrategy = new SyncDataReaderDeleteStrategy();
             }
 
             var syncData = SyncReaderStrategy.MakeSyncData(folderSet);

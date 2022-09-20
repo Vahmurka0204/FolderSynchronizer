@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FolderSynchronizerLib
+﻿namespace FolderSynchronizerLib
 {
     public class SyncProcessor
     {
@@ -15,12 +13,12 @@ namespace FolderSynchronizerLib
         {
             foreach (var path in folderPaths)
             {
-                var filesToCopy = new Dictionary<string, string>();
+                var filesToCopy = new List<FileDescriptor>();
                 foreach (var f in syncData.FilesToCopy)
                 {
-                    if (!f.Value.Contains(path))
+                    if (!f.FolderPath.Contains(path))
                     {
-                        filesToCopy.Add(f.Key, f.Value);
+                        filesToCopy.Add(new FileDescriptor( f.FileName, f.FolderPath, f.Hash));
                     }
                 }
                 _syncProcManager.Copy(filesToCopy, path, log);

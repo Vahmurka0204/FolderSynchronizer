@@ -5,14 +5,18 @@ namespace FolderSynchronizerLib
     public class FileDescriptor
     {
         [JsonInclude]
-        public string Path;
+        public string FileName;
+
+        [JsonInclude]
+        public string FolderPath;
 
         [JsonInclude]
         public string Hash;
 
-        public FileDescriptor(string filePath, string hash)
+        public FileDescriptor(string filename, string folderPath, string hash)
         {
-            Path = filePath;
+            FileName = filename;
+            FolderPath = folderPath;
             Hash = hash;
         }
 
