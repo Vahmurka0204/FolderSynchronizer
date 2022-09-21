@@ -7,9 +7,9 @@ namespace Tests
 {
     public class TestSyncProcessorManager : ISyncProcessorManager
     {
-        List<Folder> _folders;
+        List<FolderSnapshot> _folders;
 
-        public TestSyncProcessorManager(List<Folder> folders)
+        public TestSyncProcessorManager(List<FolderSnapshot> folders)
         {
             _folders = folders;   
         }

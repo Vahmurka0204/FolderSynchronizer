@@ -1,6 +1,6 @@
 ﻿namespace FolderSynchronizerLib
 {
-    public interface IChecker
+    public interface IPathChecker
     {
         bool IsValid(string path);
     }

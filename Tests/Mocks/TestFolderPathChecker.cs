@@ -3,7 +3,7 @@ using FolderSynchronizerLib;
 
 namespace Tests
 {
-    public class TestFolderPathChecker : IChecker
+    public class TestFolderPathChecker : IPathChecker
     {
         public bool IsValid(string path)
         {

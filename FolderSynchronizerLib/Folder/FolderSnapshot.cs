@@ -2,7 +2,7 @@
 
 namespace FolderSynchronizerLib
 {
-     public class Folder
+     public class FolderSnapshot
     {
         [JsonInclude]
         public string Path;
@@ -10,18 +10,18 @@ namespace FolderSynchronizerLib
         [JsonInclude]
         public List<FileDescriptor> FilesList;
        
-        public Folder(string address)
+        public FolderSnapshot(string address)
         {
             Path = address;            
             FilesList = new List<FileDescriptor>();
         }
 
-        public Folder(string path, List<FileDescriptor> fileDescriptors)
+        public FolderSnapshot(string path, List<FileDescriptor> fileDescriptors)
         {
             Path = path;
             FilesList = fileDescriptors;
         }
 
-        public Folder() { }
+        public FolderSnapshot() { }
     }
 }

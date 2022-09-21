@@ -2,7 +2,7 @@
 
 namespace FolderSynchronizerLib
 {
-    public class FolderPathChecker : IChecker
+    public class LocalPathChecker : IPathChecker
     {
         public bool IsValid(string path)
         {

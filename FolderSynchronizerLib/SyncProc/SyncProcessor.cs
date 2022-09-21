@@ -9,7 +9,7 @@
             _syncProcManager = new SyncProcessorManager();
         }
 
-        public void Synchronize(SyncData syncData, List<string> folderPaths, ILog log)
+        public void Synchronize(SyncInstructions syncData, List<string> folderPaths, ILog log)
         {
             foreach (var path in folderPaths)
             {

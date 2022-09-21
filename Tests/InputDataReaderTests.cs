@@ -13,7 +13,7 @@ namespace Tests
         [InlineData("C:\\", "D:\\","--loglevel", "verbose")]
         public void CreateInputValidArgs(params string[] args)
         {
-            var input = new InputDataReader(new TestFolderPathChecker()).Read(args);
+            var input = new ConfigurationParser(new TestFolderPathChecker()).Read(args);
         }
 
         [Theory]
@@ -26,7 +26,7 @@ namespace Tests
 
         public void CreateInputInvalidArgs(params string[] args)
         {
-            Assert.Throws<SyncException>(() => {var input = new InputDataReader(new TestFolderPathChecker()).Read(args); });
+            Assert.Throws<SyncException>(() => {var input = new ConfigurationParser(new TestFolderPathChecker()).Read(args); });
         }
 
     }

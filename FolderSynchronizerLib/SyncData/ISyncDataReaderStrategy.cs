@@ -2,6 +2,6 @@
 {
     public interface ISyncDataReaderStrategy
     {
-        SyncData MakeSyncData(FolderSet folderSet);
+        SyncInstructions MakeSyncData(FolderSet folderSet);
     }
 }

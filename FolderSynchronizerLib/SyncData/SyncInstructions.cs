@@ -1,12 +1,12 @@
 ﻿namespace FolderSynchronizerLib
 {
-    public class SyncData : IEquatable<SyncData>
+    public class SyncInstructions : IEquatable<SyncInstructions>
     {
         public readonly List<FileDescriptor> FilesToCopy;
         public readonly List<FileDescriptor> FilesToUpdate;
         public readonly List<FileDescriptor> FilesToDelete;
 
-        public SyncData
+        public SyncInstructions
            (List<FileDescriptor> filesToCopy,
             List<FileDescriptor> filesToUpdate,
             List<FileDescriptor> filesToDelete)
@@ -16,7 +16,7 @@
             FilesToDelete = filesToDelete;
         }
 
-        public bool Equals(SyncData other)
+        public bool Equals(SyncInstructions other)
         {
             bool filesToCopy = CompareLists(other.FilesToCopy, FilesToCopy);
             bool filesToUpdate = CompareLists(other.FilesToUpdate, FilesToUpdate);

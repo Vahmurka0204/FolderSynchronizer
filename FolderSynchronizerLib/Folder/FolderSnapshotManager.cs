@@ -3,27 +3,27 @@ using System.Text.Json;
 
 namespace FolderSynchronizerLib
 {
-    public class FolderWorker
+    public class FolderSnapshotManager
     {
-        public Folder LoadSerializedFolderAsync(string path)
+        public FolderSnapshot DeserializeFolderSnapshot(string path)
         {
             string filename = GetFileName(path);
 
             if (!File.Exists(filename))
             {
-                return new Folder(path);
+                return new FolderSnapshot(path);
             }
 
 
             string jsonFolder = File.ReadAllText(filename);
             
-            Folder folder = JsonSerializer.Deserialize<Folder>(jsonFolder);
+            FolderSnapshot folder = JsonSerializer.Deserialize<FolderSnapshot>(jsonFolder);
 
             return folder;                                
             
         }
 
-        public Folder LoadFolder(string path)
+        public FolderSnapshot MakeFolderSnapshot(string path)
         {
             if (!Directory.Exists(path))
             {
@@ -49,7 +49,7 @@ namespace FolderSynchronizerLib
                 filesList.Add(new FileDescriptor(GetSubPath(filePath,path), path, CalculateMD5(filePath)));
             }
 
-            var folder = new Folder(path);
+            var folder = new FolderSnapshot(path);
             folder.FilesList = filesList;
             
             return folder;
@@ -60,9 +60,9 @@ namespace FolderSynchronizerLib
             return longPath.Substring(firstPartPath.Length);
         }
 
-        public void SerializeFolder(string path)
+        public void SerializeFolderSnapshot(string path)
         {
-            Folder folder = LoadFolder(path);
+            FolderSnapshot folder = MakeFolderSnapshot(path);
             var jsonFolder = JsonSerializer.Serialize(folder);
             string filename = GetFileName(path);
 

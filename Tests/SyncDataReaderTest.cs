@@ -11,7 +11,7 @@ namespace Tests
         [Theory (Skip = "specific reason")]
         [ClassData(typeof(FolderSetSyncData))]
         
-        public void CreateInputValidArgs(FolderSet set, SyncData expected)
+        public void CreateInputValidArgs(FolderSet set, SyncInstructions expected)
         {
             var syncData = new SyncDataReader().Load(set);
 

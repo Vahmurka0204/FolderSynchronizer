@@ -8,7 +8,7 @@ namespace FolderSynchronizerLib
         private static List<FileDescriptor> _filesForUpdateList = new List<FileDescriptor>();
         private static List<FileDescriptor> _filesForDeleteList = new List<FileDescriptor>();
 
-        public SyncData MakeSyncData(FolderSet folderSet)
+        public SyncInstructions MakeSyncData(FolderSet folderSet)
         {
             foreach (var folderPair in folderSet.FolderList)
             {
@@ -19,7 +19,7 @@ namespace FolderSynchronizerLib
 
             _filesForUpdateList = RemoveCollision(_filesForDeleteList, _filesForUpdateList);
                        
-            return new SyncData(_filesForAddingList, _filesForUpdateList, _filesForDeleteList);
+            return new SyncInstructions(_filesForAddingList, _filesForUpdateList, _filesForDeleteList);
         }
 
         private List<FileDescriptor> FindDeleteFiles(FolderPair folderPair, List<FileDescriptor> deleteList)
@@ -83,7 +83,7 @@ namespace FolderSynchronizerLib
             return updateList;
         }
 
-        private FileDescriptor GetItemByPath(Folder folder, string path)
+        private FileDescriptor GetItemByPath(FolderSnapshot folder, string path)
         {
             foreach (FileDescriptor file in folder.FilesList)
             {

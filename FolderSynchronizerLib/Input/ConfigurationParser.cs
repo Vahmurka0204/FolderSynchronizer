@@ -1,12 +1,12 @@
 ﻿namespace FolderSynchronizerLib
 {
-    public class InputDataReader
+    public class ConfigurationParser
     {
         readonly string _noDelete;
         readonly string _loglevel;
-        private readonly IChecker _pathChecker;
+        private readonly IPathChecker _pathChecker;
 
-        public InputDataReader(IChecker checker)
+        public ConfigurationParser(IPathChecker checker)
         {
             _noDelete = "--no-delete";
             _loglevel = "--loglevel";

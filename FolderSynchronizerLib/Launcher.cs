@@ -13,7 +13,7 @@
 
             foreach(var path in input.FoldersPaths)
             {
-                new FolderWorker().SerializeFolder(path);
+                new FolderSnapshotManager().SerializeFolderSnapshot(path);
             }
         }
     }

@@ -2,10 +2,10 @@
 {
     public class FolderPair
     {
-        public readonly Folder Old;
-        public readonly Folder New;
+        public readonly FolderSnapshot Old;
+        public readonly FolderSnapshot New;
 
-        public FolderPair(Folder oldFolder, Folder newFolder)
+        public FolderPair(FolderSnapshot oldFolder, FolderSnapshot newFolder)
         {
             Old = oldFolder;
             New = newFolder;

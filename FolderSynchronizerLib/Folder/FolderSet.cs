@@ -10,11 +10,11 @@ namespace FolderSynchronizerLib
 
         public FolderSet(InputData input)
         {
-            var folderWorker = new FolderWorker();
+            var folderWorker = new FolderSnapshotManager();
             FolderList = new List<FolderPair>();
             foreach (var path in input.FoldersPaths)
             {
-                var folderPair = new FolderPair(folderWorker.LoadSerializedFolderAsync(path), folderWorker.LoadFolder(path));
+                var folderPair = new FolderPair(folderWorker.DeserializeFolderSnapshot(path), folderWorker.MakeFolderSnapshot(path));
                 FolderList.Add(folderPair);
             }
                         

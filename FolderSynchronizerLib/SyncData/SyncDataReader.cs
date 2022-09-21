@@ -7,7 +7,7 @@ namespace FolderSynchronizerLib
         public ISyncDataReaderStrategy SyncReaderStrategy { get; set; }
 
         
-        public SyncData Load(FolderSet folderSet)
+        public SyncInstructions Load(FolderSet folderSet)
         {
             if (folderSet.NoDeleteFlag)
             {

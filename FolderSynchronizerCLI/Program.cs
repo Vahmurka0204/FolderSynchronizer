@@ -1,4 +1,4 @@
 ﻿using FolderSynchronizerLib;
 
-var input = new InputDataReader(new FolderPathChecker()).Read(args);
+var input = new ConfigurationParser(new LocalPathChecker()).Read(args);
 new Launcher().Synchronize(input);
