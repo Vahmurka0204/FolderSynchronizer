@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FolderSynchronizerCLI\FolderSynchronizerCLI.csproj" />
     <ProjectReference Include="..\FolderSynchronizerLib\FolderSynchronizerLib.csproj" />
   </ItemGroup>
 

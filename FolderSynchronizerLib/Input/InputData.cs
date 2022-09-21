@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FolderSynchronizerLib
+﻿namespace FolderSynchronizerLib
 {
     public class InputData
     {
