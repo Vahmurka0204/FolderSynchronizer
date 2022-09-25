@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace FolderSynchronizerLib
 {
-    public class FolderSnapshotManager
+    public class FolderSnapshotManager : IFolderSnapshotManager
     {
         public FolderSnapshot DeserializeFolderSnapshot(string path)
         {
@@ -16,11 +16,11 @@ namespace FolderSynchronizerLib
 
 
             string jsonFolder = File.ReadAllText(filename);
-            
+
             FolderSnapshot folder = JsonSerializer.Deserialize<FolderSnapshot>(jsonFolder);
 
-            return folder;                                
-            
+            return folder;
+
         }
 
         public FolderSnapshot MakeFolderSnapshot(string path)
@@ -44,14 +44,14 @@ namespace FolderSynchronizerLib
                 countPath++;
             }
 
-            foreach(string filePath in filesPathList)
+            foreach (string filePath in filesPathList)
             {
-                filesList.Add(new FileDescriptor(GetSubPath(filePath,path), path, CalculateMD5(filePath)));
+                filesList.Add(new FileDescriptor(GetSubPath(filePath, path), path, CalculateMD5(filePath)));
             }
 
             var folder = new FolderSnapshot(path);
             folder.FilesList = filesList;
-            
+
             return folder;
         }
 

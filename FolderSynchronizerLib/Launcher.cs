@@ -2,6 +2,13 @@
 {
     public class Launcher
     {
+        private readonly IFolderSnapshotManager _snapshotManager;
+
+        public Launcher(IFolderSnapshotManager manager)
+        {
+            _snapshotManager = manager;
+        }
+
         public void Synchronize(InputData input)
         {
             var folderSet = new FolderSet(input);
@@ -13,7 +20,7 @@
 
             foreach(var path in input.FoldersPaths)
             {
-                new FolderSnapshotManager().SerializeFolderSnapshot(path);
+                _snapshotManager.SerializeFolderSnapshot(path);
             }
         }
     }
