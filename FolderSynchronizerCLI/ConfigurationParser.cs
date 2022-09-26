@@ -6,27 +6,27 @@
         readonly string _loglevel;
         private readonly IPathChecker _pathChecker;
 
-        public ConfigurationParser(IPathChecker checker)
+        public ConfigurationParser(IPathChecker pathChecker)
         {
             _noDelete = "--no-delete";
             _loglevel = "--loglevel";
-            _pathChecker = checker;
+            _pathChecker = pathChecker;
         }
 
-        public InputData Read(string[] args)
+        public Configuration Read(string[] args)
         {
-            var input = new InputData();
+            var configuration = new Configuration();
 
-            if (!IsInputValid(args))
+            if (!IsConfigurationValid(args))
             {
-                throw new SyncException("Input is invalid");
+                throw new SyncException("Configuration is invalid");
             }
 
             int count = 0;
 
             while (count < 2 && _pathChecker.IsValid(args[count]))
             {
-                input.FoldersPaths.Add(args[count]);
+                configuration.FoldersPaths.Add(args[count]);
                 count++;
             }
 
@@ -40,15 +40,15 @@
 
             if (flagList.Contains(_noDelete))
             {
-                input.NoDeleteFlag = true;
+                configuration.NoDeleteFlag = true;
             }
 
             if (flagList.Contains(_loglevel))
             {
-                input.LogLevel = GetLogFlag(flagList);
+                configuration.LogLevel = GetLogFlag(flagList);
             }
 
-            return input;
+            return configuration;
         }
 
         private LogLevels GetLogFlag(List<string> flagList)
@@ -89,7 +89,7 @@
             return null;
         }
 
-        public bool IsInputValid(string[] args)
+        public bool IsConfigurationValid(string[] args)
         {
             if (args.Length < 2)
             {

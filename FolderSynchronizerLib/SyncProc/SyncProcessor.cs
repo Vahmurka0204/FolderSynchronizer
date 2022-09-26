@@ -2,36 +2,36 @@
 {
     public class SyncProcessor
     {
-        public ISyncProcessorManager _syncProcManager;
+        public ISyncManager _syncManager;
 
         public SyncProcessor()
         {
-            _syncProcManager = new SyncProcessorManager();
+            _syncManager = new SyncManager();
         }
 
-        public void Synchronize(SyncInstructions syncData, List<string> folderPaths, ILog log)
+        public void Synchronize(SyncInstructions syncInstructions, List<string> folderPaths, ILogger logger)
         {
             foreach (var path in folderPaths)
             {
                 var filesToCopy = new List<FileDescriptor>();
-                foreach (var f in syncData.FilesToCopy)
+                foreach (var f in syncInstructions.FilesToCopy)
                 {
                     if (!f.FolderPath.Contains(path))
                     {
                         filesToCopy.Add(new FileDescriptor( f.FileName, f.FolderPath, f.Hash));
                     }
                 }
-                _syncProcManager.Copy(filesToCopy, path, log);
+                _syncManager.Copy(filesToCopy, path, logger);
             }
 
             foreach (var path in folderPaths)
             {
-                _syncProcManager.Update(syncData.FilesToUpdate, path, log);
+                _syncManager.Update(syncInstructions.FilesToUpdate, path, logger);
             }
 
             foreach (var path in folderPaths)
             {
-                _syncProcManager.Delete(syncData.FilesToDelete, path, log);
+                _syncManager.Delete(syncInstructions.FilesToDelete, path, logger);
             }
         }        
     }

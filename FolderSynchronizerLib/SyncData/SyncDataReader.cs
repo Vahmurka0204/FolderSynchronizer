@@ -4,23 +4,23 @@ namespace FolderSynchronizerLib
 {
     public class SyncDataReader
     {
-        public ISyncDataReaderStrategy SyncReaderStrategy { get; set; }
+        public ISyncStrategy SyncStrategy { get; set; }
 
         
         public SyncInstructions Load(FolderSet folderSet)
         {
             if (folderSet.NoDeleteFlag)
             {
-                SyncReaderStrategy = new SyncDataReaderNoDeleteStrategy();
+                SyncStrategy = new SyncNoDeleteStrategy();
             }
             else
             {
-                SyncReaderStrategy = new SyncDataReaderDeleteStrategy();
+                SyncStrategy = new SyncDeleteStrategy();
             }
 
-            var syncData = SyncReaderStrategy.MakeSyncData(folderSet);
+            var syncInstructions = SyncStrategy.MakeSyncInstruction(folderSet);
 
-            return syncData;
+            return syncInstructions;
         }
 
         

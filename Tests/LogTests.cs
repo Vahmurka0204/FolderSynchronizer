@@ -8,8 +8,8 @@ namespace Tests
         [Fact]
         public void SummaryLogTest()
         {
-            var logCreator = new LogCreator();
-            var log = logCreator.Create(LogLevels.Summary);
+            var loggerFactory = new LoggerFactory();
+            var log = loggerFactory.Create(LogLevels.Summary);
             for (int i = 0;i<5;i++)
                 log.GetInfoAboutAddFiles("","");
             for (int i = 0; i < 3; i++)

@@ -17,9 +17,9 @@ namespace FolderSynchronizerLib
 
             string jsonFolder = File.ReadAllText(filename);
 
-            FolderSnapshot folder = JsonSerializer.Deserialize<FolderSnapshot>(jsonFolder);
+            FolderSnapshot folderSnapshot = JsonSerializer.Deserialize<FolderSnapshot>(jsonFolder);
 
-            return folder;
+            return folderSnapshot;
 
         }
 
@@ -49,10 +49,10 @@ namespace FolderSynchronizerLib
                 filesList.Add(new FileDescriptor(GetSubPath(filePath, path), path, CalculateMD5(filePath)));
             }
 
-            var folder = new FolderSnapshot(path);
-            folder.FilesList = filesList;
+            var folderSnapshot = new FolderSnapshot(path);
+            folderSnapshot.FilesList = filesList;
 
-            return folder;
+            return folderSnapshot;
         }
 
         private static string GetSubPath(string longPath, string firstPartPath)
@@ -62,8 +62,8 @@ namespace FolderSynchronizerLib
 
         public void SerializeFolderSnapshot(string path)
         {
-            FolderSnapshot folder = MakeFolderSnapshot(path);
-            var jsonFolder = JsonSerializer.Serialize(folder);
+            FolderSnapshot folderSnapshot = MakeFolderSnapshot(path);
+            var jsonFolder = JsonSerializer.Serialize(folderSnapshot);
             string filename = GetFileName(path);
 
             if (File.Exists(filename))

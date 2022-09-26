@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace Tests
 {
-    public class TestSyncProcessorManager : ISyncProcessorManager
+    public class TestSyncManager : ISyncManager
     {
         List<FolderSnapshot> _folders;
 
-        public TestSyncProcessorManager(List<FolderSnapshot> folders)
+        public TestSyncManager(List<FolderSnapshot> folders)
         {
             _folders = folders;   
         }
         
-        public void Copy(List<FileDescriptor> filesToCopy, string path, ILog log)
+        public void Copy(List<FileDescriptor> filesToCopy, string path, ILogger logger)
         {
            
         }
@@ -31,12 +31,12 @@ namespace Tests
             return null;
         }
 
-        public void Delete(List<FileDescriptor> filesToDelete, string path, ILog log)
+        public void Delete(List<FileDescriptor> filesToDelete, string path, ILogger logger)
         {
             
         }
 
-        public void Update(List<FileDescriptor> fileToUpdate, string path, ILog log)
+        public void Update(List<FileDescriptor> fileToUpdate, string path, ILogger logger)
         {
         }
     }

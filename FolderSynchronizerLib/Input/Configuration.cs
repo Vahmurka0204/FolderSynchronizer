@@ -1,12 +1,12 @@
 ﻿namespace FolderSynchronizerLib
 {
-    public class InputData
+    public class Configuration
     {
         public List<string> FoldersPaths;
         public bool NoDeleteFlag;
         public LogLevels LogLevel;
 
-        public InputData()
+        public Configuration()
         {
             FoldersPaths = new List<string>();
             NoDeleteFlag = false;

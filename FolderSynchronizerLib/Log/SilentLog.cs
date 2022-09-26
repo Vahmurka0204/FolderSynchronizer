@@ -1,6 +1,6 @@
 ﻿namespace FolderSynchronizerLib
 {
-    class SilentLog : ILog
+    class SilentLog : ILogger
     {
         public string FormLogToPrint()
         {

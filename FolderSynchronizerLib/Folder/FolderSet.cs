@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FolderSynchronizerLib
+﻿namespace FolderSynchronizerLib
 {
     public class FolderSet
     {
@@ -8,18 +6,18 @@ namespace FolderSynchronizerLib
         public readonly bool NoDeleteFlag;
         public readonly LogLevels Loglevel;
 
-        public FolderSet(InputData input)
+        public FolderSet(Configuration configuration)
         {
-            var folderWorker = new FolderSnapshotManager();
+            var folderSnapshotManager = new FolderSnapshotManager();
             FolderList = new List<FolderPair>();
-            foreach (var path in input.FoldersPaths)
+            foreach (var path in configuration.FoldersPaths)
             {
-                var folderPair = new FolderPair(folderWorker.DeserializeFolderSnapshot(path), folderWorker.MakeFolderSnapshot(path));
+                var folderPair = new FolderPair(folderSnapshotManager.DeserializeFolderSnapshot(path), folderSnapshotManager.MakeFolderSnapshot(path));
                 FolderList.Add(folderPair);
             }
                         
-            NoDeleteFlag = input.NoDeleteFlag;            
-            Loglevel = input.LogLevel;
+            NoDeleteFlag = configuration.NoDeleteFlag;            
+            Loglevel = configuration.LogLevel;
         }
 
         public FolderSet() { }

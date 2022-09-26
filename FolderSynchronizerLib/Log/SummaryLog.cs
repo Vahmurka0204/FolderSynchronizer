@@ -2,7 +2,7 @@
 
 namespace FolderSynchronizerLib
 {
-    class SummaryLog : ILog
+    class SummaryLog : ILogger
     {
         private int _countOfAdd;
         private int _countOfUpdate;

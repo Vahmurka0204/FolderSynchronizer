@@ -9,14 +9,14 @@
             _snapshotManager = manager;
         }
 
-        public void Synchronize(InputData input)
+        public void Synchronize(Configuration input)
         {
             var folderSet = new FolderSet(input);
             
-            var syncData = new SyncDataReader().Load(folderSet);
-            var log = new LogCreator().Create(folderSet.Loglevel);
-            new SyncProcessor().Synchronize(syncData, input.FoldersPaths, log);
-            Console.WriteLine(log.FormLogToPrint());
+            var syncInstructions = new SyncDataReader().Load(folderSet);
+            var logger = new LoggerFactory().Create(folderSet.Loglevel);
+            new SyncProcessor().Synchronize(syncInstructions, input.FoldersPaths, logger);
+            Console.WriteLine(logger.FormLogToPrint());
 
             foreach(var path in input.FoldersPaths)
             {

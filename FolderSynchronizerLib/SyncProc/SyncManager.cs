@@ -1,9 +1,9 @@
 ﻿
 namespace FolderSynchronizerLib
 {
-    public class SyncProcessorManager : ISyncProcessorManager
+    public class SyncManager : ISyncManager
     {
-        public void Copy(List<FileDescriptor> filesToCopy, string destinationFolder, ILog log)
+        public void Copy(List<FileDescriptor> filesToCopy, string destinationFolder, ILogger logger)
         {
            foreach(var copyInfo in filesToCopy)
             {
@@ -11,11 +11,11 @@ namespace FolderSynchronizerLib
                 string destination = destinationFolder + copyInfo.FileName;
 
                 File.Copy(source, destination,true);
-                log.GetInfoAboutAddFiles(source, destination);
+                logger.GetInfoAboutAddFiles(source, destination);
             }
         }
 
-        public void Delete(List<FileDescriptor> filesToDelete, string destinationFolder, ILog log)
+        public void Delete(List<FileDescriptor> filesToDelete, string destinationFolder, ILogger logger)
         {
             foreach (var deleteInfo in filesToDelete)
             {
@@ -27,11 +27,11 @@ namespace FolderSynchronizerLib
                 }
 
                 File.Delete(pathDelete);
-                log.GetInfoAboutDeleteFiles(pathDelete);
+                logger.GetInfoAboutDeleteFiles(pathDelete);
             }
         }
 
-        public void Update(List<FileDescriptor> filesToUpdate, string destinationFolder, ILog log)
+        public void Update(List<FileDescriptor> filesToUpdate, string destinationFolder, ILogger logger)
         {
             foreach (var copyInfo in filesToUpdate)
             {
@@ -44,7 +44,7 @@ namespace FolderSynchronizerLib
                 }
 
                 File.Copy(source, destination, true);
-                log.GetInfoAboutUpdateFiles(source, destination);
+                logger.GetInfoAboutUpdateFiles(source, destination);
             }
         }
     }
