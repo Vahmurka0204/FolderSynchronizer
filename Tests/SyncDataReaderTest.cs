@@ -5,20 +5,6 @@ using System.Collections;
 
 namespace Tests
 {
-    public class SyncDataReaderTest
-    {
-
-        [Theory (Skip = "specific reason")]
-        [ClassData(typeof(FolderSetSyncData))]
-        
-        public void CreateInputValidArgs(FolderSet set, SyncInstructions expected)
-        {
-            var syncData = new SyncDataReader().Load(set);
-
-            Assert.Equal(expected, syncData);
-        }
-
-    }
 
     public class FolderSetSyncData : IEnumerable<object[]>
     {

@@ -12,8 +12,8 @@
         public void Synchronize(Configuration input)
         {
             var folderSet = new FolderSet(input);
-            
-            var syncInstructions = new SyncDataReader().Load(folderSet);
+            var syncStrategy = new StrategyFactory().Create(folderSet.NoDeleteFlag);
+            var syncInstructions = syncStrategy.MakeSyncInstruction(folderSet);
             var logger = new LoggerFactory().Create(folderSet.Loglevel);
             new SyncProcessor().Synchronize(syncInstructions, input.FoldersPaths, logger);
             Console.WriteLine(logger.FormLogToPrint());
