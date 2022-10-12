@@ -3,7 +3,7 @@ namespace FolderSynchronizerLib
 {
     public class SyncManager : ISyncManager
     {
-        public void Copy(List<FileDescriptor> filesToCopy, string destinationFolder, ILogger logger)
+        public void Copy(List<FileDescriptor> filesToCopy, string destinationFolder)
         {
            foreach(var copyInfo in filesToCopy)
             {
@@ -11,11 +11,11 @@ namespace FolderSynchronizerLib
                 string destination = destinationFolder + copyInfo.FileName;
 
                 File.Copy(source, destination,true);
-                logger.GetInfoAboutAddFiles(source, destination);
+                Logger.Info($"Copied from {source} to {destination}.");
             }
         }
 
-        public void Delete(List<FileDescriptor> filesToDelete, string destinationFolder, ILogger logger)
+        public void Delete(List<FileDescriptor> filesToDelete, string destinationFolder)
         {
             foreach (var deleteInfo in filesToDelete)
             {
@@ -27,11 +27,11 @@ namespace FolderSynchronizerLib
                 }
 
                 File.Delete(pathDelete);
-                logger.GetInfoAboutDeleteFiles(pathDelete);
+                Logger.Info($"Deleted from {pathDelete}.");
             }
         }
 
-        public void Update(List<FileDescriptor> filesToUpdate, string destinationFolder, ILogger logger)
+        public void Update(List<FileDescriptor> filesToUpdate, string destinationFolder)
         {
             foreach (var copyInfo in filesToUpdate)
             {
@@ -44,7 +44,7 @@ namespace FolderSynchronizerLib
                 }
 
                 File.Copy(source, destination, true);
-                logger.GetInfoAboutUpdateFiles(source, destination);
+                Logger.Info($"Copied from {source} to {destination}.");
             }
         }
     }

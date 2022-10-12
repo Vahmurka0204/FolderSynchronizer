@@ -4,7 +4,7 @@
     {
         public readonly List<FolderPair> FolderList;
         public readonly bool NoDeleteFlag;
-        public readonly LogLevels Loglevel;
+        public readonly LogLevel Loglevel;
 
         public FolderSet(Configuration configuration)
         {
@@ -16,8 +16,7 @@
                 FolderList.Add(folderPair);
             }
                         
-            NoDeleteFlag = configuration.NoDeleteFlag;            
-            Loglevel = configuration.LogLevel;
+            NoDeleteFlag = configuration.NoDeleteFlag;
         }
 
         public FolderSet() { }

@@ -14,7 +14,7 @@ namespace Tests
             _folders = folders;   
         }
         
-        public void Copy(List<FileDescriptor> filesToCopy, string path, ILogger logger)
+        public void Copy(List<FileDescriptor> filesToCopy, string path)
         {
            
         }
@@ -31,12 +31,12 @@ namespace Tests
             return null;
         }
 
-        public void Delete(List<FileDescriptor> filesToDelete, string path, ILogger logger)
+        public void Delete(List<FileDescriptor> filesToDelete, string path)
         {
             
         }
 
-        public void Update(List<FileDescriptor> fileToUpdate, string path, ILogger logger)
+        public void Update(List<FileDescriptor> fileToUpdate, string path)
         {
         }
     }

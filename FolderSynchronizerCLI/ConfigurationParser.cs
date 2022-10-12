@@ -3,13 +3,11 @@
     public class ConfigurationParser
     {
         readonly string _noDelete;
-        readonly string _loglevel;
         private readonly IPathChecker _pathChecker;
 
         public ConfigurationParser(IPathChecker pathChecker)
         {
             _noDelete = "--no-delete";
-            _loglevel = "--loglevel";
             _pathChecker = pathChecker;
         }
 
@@ -43,51 +41,9 @@
                 configuration.NoDeleteFlag = true;
             }
 
-            if (flagList.Contains(_loglevel))
-            {
-                configuration.LogLevel = GetLogFlag(flagList);
-            }
-
             return configuration;
         }
 
-        private LogLevels GetLogFlag(List<string> flagList)
-        {
-            string logFlag;
-
-            try
-            {
-                logFlag = flagList[flagList.IndexOf(_loglevel) + 1];
-            }
-            catch (Exception)
-            {
-                throw new SyncException("Do not specify the type of logging");
-            }
-
-            LogLevels? validFlag = GetUserLogLevel(logFlag);
-
-            if (validFlag == null)
-            {
-                throw new SyncException("Invalid type of logging");
-            }
-
-            return (LogLevels)validFlag;
-        }
-
-        private LogLevels? GetUserLogLevel(string logLevel)
-        {
-            var validLevels = Enum.GetNames(typeof(LogLevels));
-
-            foreach (var level in validLevels)
-            {
-                if (level.ToLower() == logLevel.ToLower())
-                {
-                    return (LogLevels)Enum.Parse(typeof(LogLevels), level);
-                }
-            }
-
-            return null;
-        }
 
         public bool IsConfigurationValid(string[] args)
         {
@@ -112,7 +68,7 @@
             {
                 string word = args[count];
 
-                if (GetUserLogLevel(word) == null && _noDelete != word && _loglevel != word)
+                if (_noDelete != word)
                 {
                     throw new SyncException("Invalid word: " + word);
                 }

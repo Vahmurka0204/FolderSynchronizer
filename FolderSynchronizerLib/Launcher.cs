@@ -14,9 +14,7 @@
             var folderSet = new FolderSet(input);
             var syncStrategy = new StrategyFactory().Create(folderSet.NoDeleteFlag);
             var syncInstructions = syncStrategy.MakeSyncInstruction(folderSet);
-            var logger = new LoggerFactory().Create(folderSet.Loglevel);
-            new SyncProcessor().Synchronize(syncInstructions, input.FoldersPaths, logger);
-            Console.WriteLine(logger.FormLogToPrint());
+            new SyncProcessor().Synchronize(syncInstructions, input.FoldersPaths);
 
             foreach(var path in input.FoldersPaths)
             {

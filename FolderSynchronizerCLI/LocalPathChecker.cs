@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace FolderSynchronizerLib
+﻿namespace FolderSynchronizerLib
 {
     public class LocalPathChecker : IPathChecker
     {
