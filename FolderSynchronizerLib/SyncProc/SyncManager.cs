@@ -19,7 +19,7 @@ namespace FolderSynchronizerLib
         {
             foreach (var deleteInfo in filesToDelete)
             {
-                string pathDelete = Path.Combine(destinationFolder, deleteInfo.FileName);
+                string pathDelete = destinationFolder + deleteInfo.FileName;
 
                 if (!File.Exists(pathDelete))
                 {

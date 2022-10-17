@@ -11,7 +11,7 @@
 
         public void Synchronize(SyncInstructions syncInstructions, List<string> folderPaths)
         {
-            Logger.Info("synchronization started at " + DateTime.Now.ToString());
+            Logger.Debug("Synchronization started at " + DateTime.Now.ToString());
 
             foreach (var path in folderPaths)
             {
@@ -36,7 +36,7 @@
                 _syncManager.Delete(syncInstructions.FilesToDelete, path);
             }
 
-            Logger.Info("Synchronization ended at " + DateTime.Now.ToString());
+            Logger.Debug("Synchronization ended at " + DateTime.Now.ToString());
         }        
     }
 }
