@@ -1,4 +1,6 @@
-﻿namespace FolderSynchronizerLib
+﻿using FolderSynchronizerLib;
+
+namespace FolderSynchronizerCLI
 {
     public class LocalPathChecker : IPathChecker
     {

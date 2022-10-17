@@ -1,4 +1,5 @@
-﻿using FolderSynchronizerLib;
+﻿using FolderSynchronizerCLI;
+using FolderSynchronizerLib;
 
 Logger.AddLogger(new ConsoleLogger());
 string loggerFileName = DateTime.Now.ToString("dd MM yyyy") + ".txt";
