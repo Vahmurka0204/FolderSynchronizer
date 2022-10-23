@@ -1,16 +1,14 @@
 ﻿using Xunit;
 using FolderSynchronizerLib;
+using FolderSynchronizerCLI;
 
 namespace Tests
 {
-    public class InputDataReaderTests
+    public class ConfigurationParserTests
     {
         [Theory]
-        [InlineData("C:\\", "D:\\", "--no-delete", "--loglevel", "silent")]
-        [InlineData("C:\\", "D:\\", "--no-delete")]
-        [InlineData("C:\\", "D:\\", "--loglevel", "silent", "--no-delete")]
         [InlineData("C:\\", "D:\\")]
-        [InlineData("C:\\", "D:\\","--loglevel", "verbose")]
+        [InlineData("C:\\", "D:\\", "--no-delete")]
         public void CreateInputValidArgs(params string[] args)
         {
             var input = new ConfigurationParser(new TestFolderPathChecker()).Read(args);
@@ -19,6 +17,7 @@ namespace Tests
         [Theory]
         [InlineData("apple", "|tree:\\", "--no-delete", "-loglevel", "silent")]
         [InlineData("C:\\", "D:\\", "--nodelete")]
+        [InlineData("C:\\")]
         [InlineData("C:\\", "D:\\", "-loglevel", "medium", "--no-delete")]
         [InlineData("W<C:\\", "WD>:\\")]
         [InlineData("C:\\", "D:\\", "loglevel", "verbose")]

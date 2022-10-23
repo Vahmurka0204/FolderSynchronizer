@@ -17,10 +17,7 @@ namespace FolderSynchronizerCLI
         {
             var configuration = new Configuration();
 
-            if (!IsConfigurationValid(args))
-            {
-                throw new SyncException("Configuration is invalid");
-            }
+            ValidateConfiguration(args);
 
             int count = 0;
 
@@ -47,7 +44,7 @@ namespace FolderSynchronizerCLI
         }
 
 
-        public bool IsConfigurationValid(string[] args)
+        public void ValidateConfiguration(string[] args)
         {
             if (args.Length < 2)
             {
@@ -78,7 +75,6 @@ namespace FolderSynchronizerCLI
                 count++;
             }
 
-            return true;
         }
     }
 }
